@@ -1,10 +1,66 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+/*import { Image, StyleSheet, Platform } from 'react-native';
 
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { ThemedView } from '@/components/ThemedView';*/
 
+
+import { NavigationContainer } from "@react-navigation/native"
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { SafeAreaProvider } from "react-native-safe-area-context"
+import { initializeApp } from "firebase/app"
+
+import LoginScreen from "./login-screen"
+import RegisterScreen from "./register-screen"
+import HomeScreen from "./home-screen"
+import AuthProvider, { useAuth } from "./auth-context"
+
+// Initialize Firebase - replace with your own config
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID",
+}
+
+// Initialize Firebase
+initializeApp(firebaseConfig)
+
+const Stack = createNativeStackNavigator()
+
+function AppNavigator() {
+  const { user } = useAuth()
+
+  return (
+    <Stack.Navigator>
+      {user ? (
+        <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+      ) : (
+        <>
+          <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
+          <Stack.Screen name="Register" component={RegisterScreen} options={{ headerTitle: "Create Account" }} />
+        </>
+      )}
+    </Stack.Navigator>
+  )
+}
+
+export default function App() {
+  return (
+    <SafeAreaProvider>
+      <AuthProvider>
+        <AppNavigator />
+      </AuthProvider>
+    </SafeAreaProvider>
+  )
+}
+
+
+
+/*
 export default function HomeScreen() {
   return (
     <ParallaxScrollView
@@ -72,3 +128,4 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
 });
+*/
