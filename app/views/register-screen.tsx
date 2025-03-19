@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { View, StyleSheet, Alert } from "react-native"
 import { TextInput, Button } from "react-native-paper"
-import { useAuth } from "./auth-context"
+import { useAuth } from "../auth-context"
 
 export default function RegisterScreen({ navigation }: any) {
   const [email, setEmail] = useState("")

@@ -1,16 +1,18 @@
 import { View, StyleSheet, Text } from "react-native"
-import { useAuth } from "./auth-context"
+import { useAuth } from "../auth-context"
+import { HelloWave } from "@/components/HelloWave"
 
 export default function HomeScreen() {
   const { user, signOut } = useAuth()
 
   return (
     <View style={styles.container}>
-      Motiv
+      <Text>Motiv<HelloWave /></Text>
       <View style={styles.content}>
         <Text style={styles.title}>Welcome!</Text>
-        <Text style={styles.email}>{user?.email}</Text>
-        <Text style={styles.message}>You have successfully logged in.</Text>
+        <Text style={styles.message}>Map 1</Text>
+        <Text style={styles.message}>Map 2</Text>
+        <Text style={styles.message}>Map 3</Text>
       </View>
     </View>
   )
@@ -21,7 +23,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: "#fff",
-    justifyContent: "space-between",
   },
   content: {
     marginTop: 100,

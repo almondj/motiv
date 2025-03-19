@@ -1,8 +1,9 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { SafeAreaProvider } from "react-native-safe-area-context"
 import { initializeApp } from "firebase/app"
-import HomeScreen from "./home-screen"
-import AuthProvider, { useAuth } from "./auth-context"
+import HomeScreen from "../views/home-screen"
+import Explore from "./explore"
+import AuthProvider, { useAuth } from "../auth-context"
 import "../../assets/styles/global.css"
 
 // Initialize Firebase - replace with your own config
@@ -26,6 +27,7 @@ function AppNavigator() {
   return (
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Explore" component={Explore} options={{ headerShown: false }} />
       </Stack.Navigator>
   )
 }
