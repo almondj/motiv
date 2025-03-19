@@ -1,5 +1,4 @@
 import { View, StyleSheet, Text } from "react-native"
-import { Button } from "react-native-paper"
 import { useAuth } from "./auth-context"
 
 export default function HomeScreen() {
@@ -7,15 +6,12 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
+      Motiv
       <View style={styles.content}>
         <Text style={styles.title}>Welcome!</Text>
         <Text style={styles.email}>{user?.email}</Text>
         <Text style={styles.message}>You have successfully logged in.</Text>
       </View>
-
-      <Button mode="contained" onPress={signOut} style={styles.button}>
-        Sign Out
-      </Button>
     </View>
   )
 }

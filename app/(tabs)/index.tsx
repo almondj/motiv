@@ -1,20 +1,9 @@
-/*import { Image, StyleSheet, Platform } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';*/
-
-
-import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { SafeAreaProvider } from "react-native-safe-area-context"
 import { initializeApp } from "firebase/app"
-
-import LoginScreen from "./login-screen"
-import RegisterScreen from "./register-screen"
 import HomeScreen from "./home-screen"
 import AuthProvider, { useAuth } from "./auth-context"
+import "../../assets/styles/global.css"
 
 // Initialize Firebase - replace with your own config
 const firebaseConfig = {
@@ -35,16 +24,9 @@ function AppNavigator() {
   const { user } = useAuth()
 
   return (
-    <Stack.Navigator>
-      {user ? (
+      <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
-      ) : (
-        <>
-          <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
-          <Stack.Screen name="Register" component={RegisterScreen} options={{ headerTitle: "Create Account" }} />
-        </>
-      )}
-    </Stack.Navigator>
+      </Stack.Navigator>
   )
 }
 
